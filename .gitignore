@@ -102,3 +102,7 @@ tests/title
 tests/triangle-vulkan
 tests/windows
 
+# Binaries
+bin/**
+bin-int/**
+
