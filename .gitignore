@@ -100,6 +100,7 @@ tests/threads
 tests/timeout
 tests/title
 tests/triangle-vulkan
+tests/window
 tests/windows
 
 # Binaries

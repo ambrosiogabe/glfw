@@ -270,6 +270,7 @@ struct _GLFWwndconfig
     GLFWbool      maximized;
     GLFWbool      centerCursor;
     GLFWbool      focusOnShow;
+    GLFWbool      mousePassthrough;
     GLFWbool      scaleToMonitor;
     struct {
         GLFWbool  retina;
@@ -380,6 +381,7 @@ struct _GLFWwindow
     GLFWbool            autoIconify;
     GLFWbool            floating;
     GLFWbool            focusOnShow;
+    GLFWbool            mousePassthrough;
     GLFWbool            shouldClose;
     void*               userPointer;
     GLFWvidmode         videoMode;
@@ -537,6 +539,7 @@ struct _GLFWlibrary
     _GLFWmonitor**      monitors;
     int                 monitorCount;
 
+    GLFWbool            joysticksInitialized;
     _GLFWjoystick       joysticks[GLFW_JOYSTICK_LAST + 1];
     _GLFWmapping*       mappings;
     int                 mappingCount;
@@ -630,6 +633,8 @@ void _glfwPlatformSetGammaRamp(_GLFWmonitor* monitor, const GLFWgammaramp* ramp)
 void _glfwPlatformSetClipboardString(const char* string);
 const char* _glfwPlatformGetClipboardString(void);
 
+GLFWbool _glfwPlatformInitJoysticks(void);
+void _glfwPlatformTerminateJoysticks(void);
 int _glfwPlatformPollJoystick(_GLFWjoystick* js, int mode);
 void _glfwPlatformUpdateGamepadGUID(char* guid);
 
@@ -678,6 +683,7 @@ float _glfwPlatformGetWindowOpacity(_GLFWwindow* window);
 void _glfwPlatformSetWindowResizable(_GLFWwindow* window, GLFWbool enabled);
 void _glfwPlatformSetWindowDecorated(_GLFWwindow* window, GLFWbool enabled);
 void _glfwPlatformSetWindowFloating(_GLFWwindow* window, GLFWbool enabled);
+void _glfwPlatformSetWindowMousePassthrough(_GLFWwindow* window, GLFWbool enabled);
 void _glfwPlatformSetWindowOpacity(_GLFWwindow* window, float opacity);
 
 void _glfwPlatformPollEvents(void);
