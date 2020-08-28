@@ -1,5 +1,5 @@
 project "GLFW"
-    kind "StaticLib"
+    kind "SharedLib"
     language "C"
     
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -20,7 +20,7 @@ project "GLFW"
 	filter "system:windows"
         buildoptions { "-std=c11", "-lgdi32" }
         systemversion "latest"
-        staticruntime "On"
+        staticruntime "off"
         
         files {
             "src/win32_init.c",
@@ -36,8 +36,9 @@ project "GLFW"
 
 		defines  { 
             "_GLFW_WIN32",
-            "_CRT_SECURE_NO_WARNINGS"
+            "_CRT_SECURE_NO_WARNINGS",
+            "_GLFW_BUILD_DLL"
         }
         
     filter { "system:windows", "configurations:Release" }
-        buildoptions "/MT"
+        buildoptions "/MD"
