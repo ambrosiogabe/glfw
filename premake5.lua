@@ -1,6 +1,7 @@
 project "GLFW"
     kind "SharedLib"
     language "C"
+    staticruntime "off"
     
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -20,7 +21,6 @@ project "GLFW"
 	filter "system:windows"
         buildoptions { "-std=c11", "-lgdi32" }
         systemversion "latest"
-        staticruntime "off"
         
         files {
             "src/win32_init.c",
@@ -40,5 +40,8 @@ project "GLFW"
             "_GLFW_BUILD_DLL"
         }
         
+    filter { "system:windows", "configurations:Debug" }
+        buildoptions "/MDd"        
+
     filter { "system:windows", "configurations:Release" }
         buildoptions "/MD"
